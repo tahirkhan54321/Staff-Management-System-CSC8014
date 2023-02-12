@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="815697d6-4b51-4e37-81e9-4bb2bcf3d917" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CSC8014_Coursework_Staff_System.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modules.TXT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staff/system/Module.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staff/system/Name.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staff/system/smartcard/SmartCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staff/system/smartcard/SmartCardNumber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staff/system/staff/AbstractStaff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staff/system/staff/Lecturer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staff/system/staff/Researcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staff/system/staff/Staff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staff/system/staff/StaffID.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staff/system/staff/StaffManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/students.TXT" afterDir="false" />
+    <list default="true" id="815697d6-4b51-4e37-81e9-4bb2bcf3d917" name="Changes" comment="Backup before restarting StaffID">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,15 +30,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -69,8 +51,16 @@
       <workItem from="1675335420900" duration="3467000" />
       <workItem from="1675690940391" duration="18008000" />
       <workItem from="1676116808736" duration="14361000" />
-      <workItem from="1676211516599" duration="13346000" />
+      <workItem from="1676211516599" duration="14167000" />
     </task>
+    <task id="LOCAL-00001" summary="Backup before restarting StaffID">
+      <created>1676230607769</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1676230607769</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,5 +79,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Backup before restarting StaffID" />
+    <option name="LAST_COMMIT_MESSAGE" value="Backup before restarting StaffID" />
   </component>
 </project>
