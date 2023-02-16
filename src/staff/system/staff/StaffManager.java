@@ -2,59 +2,168 @@ package staff.system.staff;
 
 import staff.system.Module;
 import staff.system.Name;
+import staff.system.smartcard.SmartCard;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.Set;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.*;
 
 
 public class StaffManager {
 
 	//you can add attributes and other methods if needed. 
 	//you can throw an exception if needed
+	private Set<Module> allModules = new HashSet<>(); //todo: should this be a singleton?
+	private Set<Name> allStudents = new HashSet<>(); //todo: should this be a singleton?
+	private Map<StaffID, AbstractStaff> allStaff = new HashMap<>(); //todo: should this be a singleton? I do need to be able to add/remove from this
 
+	public Set<Module> readInModules(String path) throws IOException {
+		int counter = 0;
+		Set<Module> readModules = new HashSet<>();
+		Scanner scanner = new Scanner(Paths.get(path));
 
+		while (scanner.hasNext()) {
+			String line = scanner.nextLine();
+			String partsOfModule[] = line.split(",");
 
-	public Set<Module> readInModules(String path) {
-		//add your code here. Do NOT change the method signature
-		return null;
+			String moduleCode = partsOfModule[0];
+			String moduleName = partsOfModule[1];
+			int semester = Integer.valueOf(partsOfModule[2]);
+			int credits = Integer.valueOf(partsOfModule[3]);
+			Module module = new Module(moduleCode, moduleName, semester, credits);
+
+			readModules.add(module);
+			counter++;
+		}
+		allModules.addAll(readModules);
+
+		System.out.println(counter + " modules have been added to the set.");
+		return readModules;
 	}
 
 
-	public Set<Name> readInStudents(String path)   {
+	public Set<Name> readInStudents(String path) throws IOException {
+		int counter = 0;
+		Set<Name> readStudents = new HashSet<>();
+		Scanner scanner = new Scanner(Paths.get(path));
+
+		while (scanner.hasNext()) {
+			String line = scanner.nextLine();
+			String partsOfName[] = line.split(" ");
+
+			String firstName = partsOfName[0];
+			String secondName = partsOfName[1];
+
+			Name name = new Name(firstName, secondName);
+			readStudents.add(name);
+			counter++;
+		}
+		allStudents.addAll(readStudents);
+
+		System.out.println(counter + " students have been added to the set.");
 		//add your code here. Do NOT change the method signature
-		return null;
+		return readStudents;
 	}
 
 
-	public int noOfStaff(String type) { 
+	public int noOfStaff(String type) { //todo: remove old code
+		int counter = 0;
+//		for(Map.Entry<StaffID, AbstractStaff> entry: allStaff.entrySet()) {
+//			if(entry.getValue().getStaffType().equals(type)) {
+//				counter++;
+//			}
+//		}
+		Iterator<Map.Entry<StaffID, AbstractStaff>> iterator = allStaff.entrySet().iterator();
+		while (iterator.hasNext()) {
+			Map.Entry<StaffID, AbstractStaff> entry = iterator.next();
+			if (entry.getValue().getStaffType().equals(type)) {
+				counter++;
+			}
+		}
 		//add your code here. Do NOT change the method signature
-		return 0;
+		return counter;
 	}
 
 
+	public boolean addData(StaffID id, Set<Module> modules, Set<Name> students) {
+		boolean modulesExist = false;
+		boolean studentsExist = false;
+		String staffType = allStaff.get(id).getStaffType();
+		//note that a set cannot contain a null value so this should work.
 
-	public boolean addData(StaffID id, Set<Module> modules, Set<Name> students) {		 
+		if (!allStaff.containsKey(id)) {
+			throw new IllegalArgumentException("Staff ID does not exist: " + id);
+		}
+		if(allModules.containsAll(modules)) {
+			modulesExist = true;
+		}
+		if (allStudents.containsAll(students)) {
+			studentsExist = true;
+		}
+		if (!(allModules.containsAll(modules) || allStudents.containsAll(students))) {
+			throw new IllegalArgumentException("Modules and Students parameters don't exist in the list.");
+			//todo: should this be a return false and sysout?
+		}
+		if (!(staffType.equals("Lecturer") || staffType.equals("Researcher"))) {
+			throw new IllegalArgumentException("Staff type isn't Lecturer or Researcher for ID: " + id);
+		} //todo: this might be redundant if we specify that all staff need to either be a researcher or a lecturer - check abstractstaff class
+
+		if (staffType.equals("Lecturer") && modulesExist) {
+				Lecturer lecturer = (Lecturer) allStaff.get(id);
+				lecturer.setModules(modules);
+				allStaff.put(id, lecturer);
+				return true;
+		}
+		if (staffType.equals("Researcher") && studentsExist) {
+				Researcher researcher = (Researcher) allStaff.get(id);
+				researcher.setStudents(students);
+				allStaff.put(id, researcher);
+				return true;
+		}
+		/*
+		todo: I need to:
+			1) cover cases when type is inputted incorrectly - this shouldn't be possible if we're using an existing StaffID
+			2) cover cases where sets do not contain all - see what +modules and +students
+			3) add validation for get(id)
+			4) make sure the return types make sense
+		 */
 		//add your code here. Do NOT change the method signature
 		return false;
 	}
 
 
 	public Staff employStaff(String firstName, String lastName, Date dob, String staffType, String employmentStatus) {
+		Name name = new Name(firstName, lastName);
+		SmartCard smartCard = new SmartCard()
+		if (staffType.equals("Lecturer")) {
+
+			Staff thisStaff = new Lecturer()
+		}
 		//add your code here. Do NOT change the method signature
 		return null;
 	}
 
 
 	public Collection<Staff> getAllStaff() {
+		Collection<Staff> everyStaffObj = null;
+		Iterator<Map.Entry<StaffID, AbstractStaff>> iterator = allStaff.entrySet().iterator();
+		while (iterator.hasNext()) {
+			Map.Entry<StaffID, AbstractStaff> entry = iterator.next();
+			everyStaffObj.add(entry.getValue());
+			}
 		//add your code here. Do NOT change the method signature
-		return null;
+		return everyStaffObj;
 	}
 
 
 	public void terminateStaff(StaffID id) {
+		if (allStaff.containsKey(id)) {
+			allStaff.remove(id);
+			System.out.println(id + " has been removed.");
+		} else {
+			System.out.println(id + " does not exist.");
+		}
 		//add your code here. Do NOT change the method signature
-
 	}
 
 

@@ -1,6 +1,7 @@
 package staff.system.staff;
 
 import staff.system.Module;
+import staff.system.Name;
 import staff.system.smartcard.SmartCard;
 
 import java.util.Set;
@@ -9,14 +10,15 @@ public class Lecturer extends AbstractStaff {
 
     private Set<Module> modules;
 
-    public Lecturer(StaffID staffID, SmartCard smartCard, String staffType, String staffEmploymentStatus,
-                      Set<Module> modules) {
-        super(staffID, smartCard, staffType, staffEmploymentStatus);
+    public Lecturer(Name name, StaffID staffID, SmartCard smartCard, String staffType, String staffEmploymentStatus,
+                    Set<Module> modules) { //todo: should modules even be in the parameter list or should it be an empty set?
+        super(name, staffID, smartCard, staffType, staffEmploymentStatus);
         this.modules = modules;
     }
 
     public String getModules() {
         String allModuleInfo = "";
+        System.out.println("Here are all the modules assigned to this Lecturer (" + this.getName() + "): ");
         for (Module module : this.modules) {
             allModuleInfo = allModuleInfo + module.toString() + "\n";
         }
@@ -38,5 +40,9 @@ public class Lecturer extends AbstractStaff {
             isEnough = true;
         }
         return isEnough;
+    }
+
+    public void setModules(Set<Module> modules) {
+        this.modules = modules;
     }
 }

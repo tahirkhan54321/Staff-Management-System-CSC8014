@@ -1,6 +1,5 @@
 package staff.system.staff;
 
-import staff.system.Module;
 import staff.system.Name;
 import staff.system.smartcard.SmartCard;
 
@@ -10,14 +9,15 @@ public class Researcher extends AbstractStaff {
 
     private Set<Name> students;
 
-    public Researcher(StaffID staffID, SmartCard smartCard, String staffType, String staffEmploymentStatus,
+    public Researcher(Name name, StaffID staffID, SmartCard smartCard, String staffType, String staffEmploymentStatus,
                       Set<Name> students) {
-        super(staffID, smartCard, staffType, staffEmploymentStatus);
+        super(name, staffID, smartCard, staffType, staffEmploymentStatus);
         this.students = students;
     }
 
     public String listStudentNames() {
         String allStudentNames = "";
+        System.out.println("Here are all the students assigned to this Researcher (" + this.getName() + "): ");
         for (Name name : this.students) {
             allStudentNames = allStudentNames + name.toString() + "\n";
         }
@@ -32,4 +32,7 @@ public class Researcher extends AbstractStaff {
         return isEnough;
     }
 
+    public void setStudents(Set<Name> students) {
+        this.students = students;
+    }
 }
