@@ -3,26 +3,22 @@ package staff.system.smartcard;
 import staff.system.Name;
 
 import java.util.Calendar;
-import java.util.Random;
 
-public class SmartCard {
+public abstract class SmartCard {
 
     private Name name;
     private Calendar dateOfBirth;
     private SmartCardNumber smartCardNumber;
     private Calendar dateOfIssue;
-    private Calendar expiryDate;
+
 
     public SmartCard(Name name, Calendar dateOfBirth) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         String initials = String.valueOf(this.name.getFirstName().charAt(0) + this.name.getLastName().charAt(0));
-        Random random = new Random();
-        Calendar rightNow = Calendar.getInstance();
-        int thisYear = rightNow.get(Calendar.YEAR);
-        this.smartCardNumber = smartCardNumber.getInstance(initials, random.nextInt(100), thisYear);
+        this.smartCardNumber = smartCardNumber.getInstance(initials);
         this.dateOfIssue = Calendar.getInstance();
-        this.expiryDate = Calendar.getInstance(); //todo: double check if initialising this is acceptable, seems hacky
+        this.setExpiryDate(); //todo: finish this code. Also, double check if initialising this is acceptable, seems hacky
     }
 
     public Name getName() {
@@ -45,9 +41,9 @@ public class SmartCard {
         return expiryDate;
     }
 
-    public void setExpiryDate(String staffType) { //todo: double check if this should even have an input parameter. Spec would suggest that it shouldn't
+    private void setExpiryDate(String staffType) { //todo: double check if this should even have an input parameter. Spec would suggest that it shouldn't
         if (staffType == "permanent") {
-            this.expiryDate.add(Calendar.YEAR,10);
+            this.expiryDate.set(this.dateOfIssue.add(Calendar.YEAR,10));
         } else if (staffType == "contract") {
             this.expiryDate.add(Calendar.YEAR, 2);
         } else {

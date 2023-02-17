@@ -12,7 +12,7 @@ public abstract class AbstractStaff implements Staff {
     // todo: Should this even be in the constructor? And similarly for Res/Lec?
     private String staffEmploymentStatus;
 
-    AbstractStaff(Name name, SmartCard smartCard, String staffType, String staffEmploymentStatus) {
+    AbstractStaff(Name name, StaffID staffID, SmartCard smartCard, String staffType, String staffEmploymentStatus) {
         this.name = name;
         this.staffID = StaffID.getInstance(); //todo: should I do getInstance here?
         this.smartCard = smartCard; //todo: should I do getInstance here?

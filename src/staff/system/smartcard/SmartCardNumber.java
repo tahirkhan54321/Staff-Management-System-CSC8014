@@ -5,8 +5,8 @@ import java.util.*;
 public class SmartCardNumber {
 
     private final String initials;
-    private final int randomTwoDigitInteger; //todo: should this be a random 2 digit int at this stage?
-    private final int currentYear; //todo: should this be the current year at this stage?
+    private final int randomTwoDigitInteger;
+    private final int currentYear;
     private final String strRep;
     private static final Map<String, SmartCardNumber> ALL_SMART_CARD_NUMBERS = new HashMap<>();
 
@@ -17,10 +17,18 @@ public class SmartCardNumber {
         this.strRep = strRep;
     }
 
-    public static SmartCardNumber getInstance(String initials, int randomTwoDigitInteger, int currentYear) {
+    public static SmartCardNumber getInstance(String initials) {
         /*todo: could I create a while loop which iterates a two digit number, puts it in the strRep then
             tries to put that in the hashmap. If it fails then try again.
          */
+        Random random = new Random();
+        int randomTwoDigitInteger = random.nextInt(100);
+
+        Calendar today = Calendar.getInstance(); //default with no parameters in constructor gets today's date
+        int currentYear = today.get(Calendar.YEAR);
+
+        initials = initials.toUpperCase();
+
         String strRep = initials + "-" + String.format("%02d",randomTwoDigitInteger) + "-" + currentYear;
         SmartCardNumber smartCardNumber = ALL_SMART_CARD_NUMBERS.get(strRep);
         if (smartCardNumber == null) {
@@ -36,7 +44,7 @@ public class SmartCardNumber {
     public String toString() { return strRep; }
 
 //    public SmartCardNumber(String firstComponent) {
-//        //TODO: does this need a max set size?
+//        //TODO: delete this
 //        this.firstComponent = firstComponent;
 //        boolean endLoop = false;
 //        while (!endLoop) {

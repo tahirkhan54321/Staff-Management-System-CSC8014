@@ -27,7 +27,7 @@ public class StaffManager {
 			String partsOfModule[] = line.split(",");
 
 			String moduleCode = partsOfModule[0];
-			String moduleName = partsOfModule[1];
+			String moduleName = partsOfModule[1]; //todo: remove the space?
 			int semester = Integer.valueOf(partsOfModule[2]);
 			int credits = Integer.valueOf(partsOfModule[3]);
 			Module module = new Module(moduleCode, moduleName, semester, credits);
@@ -104,17 +104,17 @@ public class StaffManager {
 			throw new IllegalArgumentException("Modules and Students parameters don't exist in the list.");
 			//todo: should this be a return false and sysout?
 		}
-		if (!(staffType.equals("Lecturer") || staffType.equals("Researcher"))) {
+		if (!(staffType.equalsIgnoreCase("Lecturer") || staffType.equalsIgnoreCase("Researcher"))) {
 			throw new IllegalArgumentException("Staff type isn't Lecturer or Researcher for ID: " + id);
 		} //todo: this might be redundant if we specify that all staff need to either be a researcher or a lecturer - check abstractstaff class
 
-		if (staffType.equals("Lecturer") && modulesExist) {
+		if (staffType.equalsIgnoreCase("Lecturer") && modulesExist) {
 				Lecturer lecturer = (Lecturer) allStaff.get(id);
 				lecturer.setModules(modules);
 				allStaff.put(id, lecturer);
 				return true;
 		}
-		if (staffType.equals("Researcher") && studentsExist) {
+		if (staffType.equalsIgnoreCase("Researcher") && studentsExist) {
 				Researcher researcher = (Researcher) allStaff.get(id);
 				researcher.setStudents(students);
 				allStaff.put(id, researcher);
@@ -134,8 +134,9 @@ public class StaffManager {
 
 	public Staff employStaff(String firstName, String lastName, Date dob, String staffType, String employmentStatus) {
 		Name name = new Name(firstName, lastName);
-		SmartCard smartCard = new SmartCard()
-		if (staffType.equals("Lecturer")) {
+		int currentYear =
+		SmartCard smartCard = new SmartCard(name, dob, employmentStatus);
+		if (staffType.equalsIgnoreCase("Lecturer")) {
 
 			Staff thisStaff = new Lecturer()
 		}
