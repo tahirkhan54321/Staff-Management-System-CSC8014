@@ -120,8 +120,7 @@ public class StaffManager {
 				allStaff.put(id, researcher);
 				return true;
 		}
-		/*
-		todo: I need to:
+		/* todo: I need to:
 			1) cover cases when type is inputted incorrectly - this shouldn't be possible if we're using an existing StaffID
 			2) cover cases where sets do not contain all - see what +modules and +students
 			3) add validation for get(id)

@@ -19,11 +19,26 @@ public class StaffID {
         this.strRep = strRep;
     }
 
-    public static StaffID getInstance() { //todo: get rid of parameters and generate random components
+    public static StaffID getInstance() {
         Random random = new Random();
         char letterComponent = (char) (random.nextInt(26) + 'a');
         int numberComponent = random.nextInt(1000);
         String strRep = letterComponent + String.format("%03d", numberComponent); //generate once
+
+        boolean keyAlreadyExists = true;
+        int counter = 0;
+
+        while (keyAlreadyExists && counter < 1000) { //regenerate Staff ID if it already exists in ALL_IDS
+            letterComponent = (char) (random.nextInt(26) + 'a');
+            numberComponent = random.nextInt(1000);
+            strRep = letterComponent + String.format("%03d", numberComponent);
+            keyAlreadyExists = ALL_IDS.containsKey(strRep);
+            counter++;
+        }
+
+        if (counter >= 1000) {
+            System.out.println("The staff ID could not be generated after 1000 tries.");
+        }
 
         StaffID staffID = ALL_IDS.get(strRep);
         if (staffID == null) {

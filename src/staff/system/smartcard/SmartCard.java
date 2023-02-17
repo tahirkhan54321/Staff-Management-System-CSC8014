@@ -10,6 +10,7 @@ public abstract class SmartCard {
     private Calendar dateOfBirth;
     private SmartCardNumber smartCardNumber;
     private Calendar dateOfIssue;
+    private Calendar expiryDate;
 
 
     public SmartCard(Name name, Calendar dateOfBirth) {
@@ -18,7 +19,6 @@ public abstract class SmartCard {
         String initials = String.valueOf(this.name.getFirstName().charAt(0) + this.name.getLastName().charAt(0));
         this.smartCardNumber = smartCardNumber.getInstance(initials);
         this.dateOfIssue = Calendar.getInstance();
-        this.setExpiryDate(); //todo: finish this code. Also, double check if initialising this is acceptable, seems hacky
     }
 
     public Name getName() {
