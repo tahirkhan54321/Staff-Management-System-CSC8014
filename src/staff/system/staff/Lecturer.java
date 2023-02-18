@@ -2,47 +2,47 @@ package staff.system.staff;
 
 import staff.system.Module;
 import staff.system.Name;
-import staff.system.smartcard.SmartCard;
 
+import java.util.Date;
 import java.util.Set;
 
 public class Lecturer extends AbstractStaff {
 
     private Set<Module> modules;
 
-    public Lecturer(Name name, StaffID staffID, SmartCard smartCard, String staffType, String staffEmploymentStatus,
-                    Set<Module> modules) { //todo: should modules even be in the parameter list or should it be an empty set?
-        super(name, staffID, smartCard, staffType, staffEmploymentStatus);
-        this.modules = modules;
+    public Lecturer(Name name, Date dateOfBirth, String staffType, String staffEmploymentStatus) {
+        //Java will call the StaffID, SmartCard parts of the AbstractStaff constructor if I don't define them here
+        super(name, dateOfBirth, staffType, staffEmploymentStatus);
+        this.modules = null;
     }
 
-    public String getModules() {
-        String allModuleInfo = "";
-        System.out.println("Here are all the modules assigned to this Lecturer (" + this.getName() + "): ");
-        for (Module module : this.modules) {
-            allModuleInfo = allModuleInfo + module.toString() + "\n";
-        }
-        return allModuleInfo;
-    }
-
-    public boolean enoughModules() {
-        boolean isEnough = false;
-        int semesterOneCredits = 0;
-        int semesterTwoCredits = 0;
-        for (Module module : this.modules) {
-            if (module.getSemester() == 1) {
-                semesterOneCredits += module.getCredits();
-            } else if (module.getSemester() == 2) {
-                semesterTwoCredits += module.getCredits();
-            }
-        }
-        if (semesterOneCredits == 40 && semesterTwoCredits == 40) {
-            isEnough = true;
-        }
-        return isEnough;
+    public Set<Module> getModules() {
+        return modules;
     }
 
     public void setModules(Set<Module> modules) {
         this.modules = modules;
     }
+
+    public boolean enoughModules() {
+        boolean isEnough = false;
+        int totalCredits = 0;
+        for (Module module : this.modules) {
+                totalCredits += module.getCredits();
+            }
+        if (totalCredits >= 40) {
+            isEnough = true;
+        }
+        return isEnough;
+    }
+
+    public String listModules() {
+        String allModules = "";
+        System.out.println("Here are all the modules assigned to this Lecturer (" + this.getName() + "): ");
+        for (Module module: modules) {
+            allModules = allModules + module.toString() + "\n";
+        }
+        return allModules;
+    }
+
 }

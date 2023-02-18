@@ -4,14 +4,10 @@ import java.util.*;
 
 public class StaffID {
 
-    // use a counter for the number component and increment it
-    // https://stackoverflow.com/questions/43200496/how-to-generate-employee-id
-    // if we hit 999 then increment the letter component and set counter to 000 again
     private final char letterComponent;
     private final int numberComponent;
     private final String strRep;
     private static final Map<String, StaffID> ALL_IDS = new HashMap<>();
-    //private static final int MAX_SET_SIZE = 10 ^ 3 * 26;
 
     private StaffID(char letterComponent, int numberComponent, String strRep) {
         this.letterComponent = letterComponent;
@@ -23,37 +19,31 @@ public class StaffID {
         Random random = new Random();
         char letterComponent = (char) (random.nextInt(26) + 'a');
         int numberComponent = random.nextInt(1000);
-        String strRep = letterComponent + String.format("%03d", numberComponent); //generate once
+        String strRep = null;
 
-        boolean keyAlreadyExists = true;
-        int counter = 0;
-
-        while (keyAlreadyExists && counter < 1000) { //regenerate Staff ID if it already exists in ALL_IDS
-            letterComponent = (char) (random.nextInt(26) + 'a');
-            numberComponent = random.nextInt(1000);
-            strRep = letterComponent + String.format("%03d", numberComponent);
-            keyAlreadyExists = ALL_IDS.containsKey(strRep);
-            counter++;
-        }
-
-        if (counter >= 1000) {
-            System.out.println("The staff ID could not be generated after 1000 tries.");
-        }
+//            //todo: not sure if any of this is necessary seeing as the size of the university staff list is likely to be small
+//            boolean keyAlreadyExists = true;
+//            int counter = 0;
+//
+//            while (keyAlreadyExists && counter < 1000) { //regenerate Staff ID if it already exists in ALL_IDS
+//                letterComponent = (char) (random.nextInt(26) + 'a');
+//                numberComponent = random.nextInt(1000);
+//                strRep = letterComponent + String.format("%03d", numberComponent);
+//                keyAlreadyExists = ALL_IDS.containsKey(strRep);
+//                counter++;
+//            }
+//
+//            if (counter >= 1000) {
+//                throw new InterruptedException("The staff ID could not be generated after 1000 tries.");
+//            }
 
         StaffID staffID = ALL_IDS.get(strRep);
         if (staffID == null) {
             staffID = new StaffID(letterComponent, numberComponent, strRep); //unique instance if it's not already in hashmap
             ALL_IDS.put(strRep, staffID);
         } else {
-            throw new IllegalArgumentException("ID has already been taken: " + staffID);
+            throw new IllegalArgumentException("ID has already been taken, please try again:  " + staffID);
         }
-        /*
-        todo: if it is in the hashmap then we return the StaffID object which is already in the Hashmap
-            How do we want to deal with this? What does it mean for the rest of the program?
-            Should I just find out in testing? I don't think I understand the implications of this yet
-            Should this be dealt with at the point where getInstance is called?
-            Will the illegalargumentexception suffice? How will this work in practice?
-                    */
         return staffID;
     }
 
