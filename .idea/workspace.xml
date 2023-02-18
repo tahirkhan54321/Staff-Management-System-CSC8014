@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="815697d6-4b51-4e37-81e9-4bb2bcf3d917" name="Changes" comment="Backup before rebuilding StaffID for uniqueness">
+    <list default="true" id="815697d6-4b51-4e37-81e9-4bb2bcf3d917" name="Changes" comment="Backup before removing old methods for uniqueness">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/smartcard/SmartCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staff/system/smartcard/SmartCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/staff/system/smartcard/SmartCardNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staff/system/smartcard/SmartCardNumber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/staff/system/staff/AbstractStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staff/system/staff/AbstractStaff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/staff/Lecturer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staff/system/staff/Lecturer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/staff/Researcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staff/system/staff/Researcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/staff/system/staff/StaffID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staff/system/staff/StaffID.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/staff/system/staff/StaffManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staff/system/staff/StaffManager.java" afterDir="false" />
     </list>
@@ -65,7 +62,7 @@
       <workItem from="1676299309572" duration="11673000" />
       <workItem from="1676318578537" duration="23413000" />
       <workItem from="1676543518950" duration="33462000" />
-      <workItem from="1676725427996" duration="20965000" />
+      <workItem from="1676725427996" duration="23616000" />
     </task>
     <task id="LOCAL-00001" summary="Backup before restarting StaffID">
       <created>1676230607769</created>
@@ -102,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676649606551</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Backup before removing old methods for uniqueness">
+      <created>1676758864023</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1676758864023</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +129,7 @@
     <MESSAGE value="Backup before refactoring SmartCard, StaffID to fill out StaffManager" />
     <MESSAGE value="Backup before refactoring SmartCard and adding extensions" />
     <MESSAGE value="Backup before rebuilding StaffID for uniqueness" />
-    <option name="LAST_COMMIT_MESSAGE" value="Backup before rebuilding StaffID for uniqueness" />
+    <MESSAGE value="Backup before removing old methods for uniqueness" />
+    <option name="LAST_COMMIT_MESSAGE" value="Backup before removing old methods for uniqueness" />
   </component>
 </project>

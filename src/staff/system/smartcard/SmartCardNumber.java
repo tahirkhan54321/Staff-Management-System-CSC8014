@@ -26,20 +26,6 @@ public class SmartCardNumber {
         int randomFourDigitInteger = random.nextInt(10000);
         int yearOfIssuance = today.get(Calendar.YEAR);
         String strRep = "";
-//
-//        boolean keyAlreadyExists = true;
-//        int counter = 0;
-//
-//        while (keyAlreadyExists && counter < 10000) { //regenerate SmartCardNumber if it already exists in ALL_SMART_CARD_NUMBERS
-//            randomFourDigitInteger = random.nextInt(10000);
-//            strRep = initials + "-" + String.format("%05d",randomFourDigitInteger) + "-" + yearOfIssuance;
-//            keyAlreadyExists = ALL_SMART_CARD_NUMBERS.containsKey(strRep);
-//            counter++;
-//        }
-//
-//        if (counter >= 10000) { //todo: should this throw an exception?
-//            throw new InterruptedException("The SmartCard could not be generated after 10,000 tries.");
-//        }
 
         SmartCardNumber smartCardNumber = ALL_SMART_CARD_NUMBERS.get(strRep);
         if (smartCardNumber == null) {

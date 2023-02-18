@@ -81,11 +81,7 @@ public class StaffManager {
 
 
 	public boolean addData(StaffID id, Set<Module> modules, Set<Name> students) {
-		/*
-		todo: add conditions for sets of modules and sets of names - use enough modules, enough students
-			also make sure that we're adding data rather than setting data - I don't think this is within scope.
-			We're adding module or student data to the staff rather than adding modules or adding students
-		 */
+
 		boolean modulesExist = false;
 		boolean studentsExist = false;
 		String staffType = allStaff.get(id).getStaffType();
