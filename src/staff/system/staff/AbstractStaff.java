@@ -11,32 +11,33 @@ public abstract class AbstractStaff implements Staff {
     private Date dateOfBirth;
     private StaffID staffID;
     private SmartCard smartCard;
-    private String staffType;
     private String staffEmploymentStatus;
     public static final String LECTURER = "Lecturer";
     public static final String RESEARCHER = "Researcher";
+    public static final String PERMANENT = "Permanent";
+    public static final String CONTRACT = "Contract";
 
-    AbstractStaff(Name name, Date dateOfBirth, String staffType, String staffEmploymentStatus) {
+    AbstractStaff(Name name, Date dateOfBirth, String staffEmploymentStatus) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.staffID = StaffID.getInstance();
         this.staffEmploymentStatus = staffEmploymentStatus;
-        //objects created before the exception is thrown will not be initialized if the constructor fails.
-        //Todo: the below is probably redundant if we're using a getInstance
-        if (!(staffType.equalsIgnoreCase("lecturer") || staffType.equalsIgnoreCase("researcher"))) {
-            throw new IllegalArgumentException(staffType + " is not a valid Staff Type");
+    }
+
+    public static AbstractStaff getInstance(String staffType, Name name, Date dateOfBirth, String staffEmploymentStatus) {
+        if (!(staffEmploymentStatus.equalsIgnoreCase(PERMANENT) || staffEmploymentStatus.equalsIgnoreCase(CONTRACT))) {
+            throw new IllegalArgumentException("Staff Employment Status is not valid: " + staffEmploymentStatus);
+        }
+        if (staffType.equalsIgnoreCase(LECTURER)) {
+            return new Lecturer(name, dateOfBirth, staffEmploymentStatus);
+        } else if (staffType.equalsIgnoreCase(RESEARCHER)) {
+            return new Researcher(name, dateOfBirth, staffEmploymentStatus);
         } else {
-            this.staffType = staffType;
+            throw new IllegalArgumentException("Staff Type is not valid: " + staffType);
         }
     }
 
-    public static AbstractStaff getInstance(Name name, Date dateOfBirth, String staffType, String staffEmploymentStatus) {
-        if staffType.equalsIgnoreCase(LECTURER) {
-            return new Lecturer(name, dateOfBirth, staffType, staffEmploymentStatus)
-        }
-    }
-
-    public void assignSmartCard(SmartCard smartCard) {
+    public final void assignSmartCard(SmartCard smartCard) {
         if (this.smartCard != null) {
             throw new IllegalStateException("The staff member has a smartcard already assigned to it: " + this.getSmartCard());
         } else {
@@ -44,26 +45,25 @@ public abstract class AbstractStaff implements Staff {
         }
     }
 
-    public Name getName() { return name; }
+    public final Name getName() { return name; }
 
     @Override
-    public StaffID getStaffID() {
+    public final StaffID getStaffID() {
         return staffID;
     }
 
     @Override
-    public SmartCard getSmartCard() {
+    public final SmartCard getSmartCard() {
         return smartCard;
     }
 
     @Override
-    public String getStaffType() {
-        return staffType;
-    }
+    public abstract String getStaffType();
 
     @Override
-    public String getStaffEmploymentStatus() {
+    public final String getStaffEmploymentStatus() {
         return staffEmploymentStatus;
     }
 
+    public abstract String list();
 }
