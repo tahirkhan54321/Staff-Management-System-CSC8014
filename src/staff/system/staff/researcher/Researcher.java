@@ -1,7 +1,7 @@
-package staff.system.staff;
+package staff.system.staff.researcher;
 
-import staff.system.Name;
-import staff.system.smartcard.SmartCard;
+import staff.system.supporting.Name;
+import staff.system.staff.AbstractStaff;
 
 import java.util.Date;
 import java.util.Set;

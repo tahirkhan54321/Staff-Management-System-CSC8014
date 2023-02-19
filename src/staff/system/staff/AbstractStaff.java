@@ -1,7 +1,10 @@
 package staff.system.staff;
 
-import staff.system.Name;
+import staff.system.Staff;
+import staff.system.supporting.Name;
 import staff.system.smartcard.SmartCard;
+import staff.system.staff.lecturer.Lecturer;
+import staff.system.staff.researcher.Researcher;
 
 import java.util.Date;
 
@@ -17,7 +20,7 @@ public abstract class AbstractStaff implements Staff {
     public static final String PERMANENT = "Permanent";
     public static final String CONTRACT = "Contract";
 
-    AbstractStaff(Name name, Date dateOfBirth, String staffEmploymentStatus) {
+    protected AbstractStaff(Name name, Date dateOfBirth, String staffEmploymentStatus) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.staffID = StaffID.getInstance();

@@ -1,6 +1,6 @@
 package staff.system.smartcard;
 
-import staff.system.Name;
+import staff.system.supporting.Name;
 import staff.system.staff.AbstractStaff;
 
 import java.util.Calendar;

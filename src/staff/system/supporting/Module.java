@@ -1,4 +1,4 @@
-package staff.system;
+package staff.system.supporting;
 
 public class Module {
 

@@ -1,8 +1,13 @@
-package staff.system.staff;
+package staff.system.driver;
 
-import staff.system.Module;
-import staff.system.Name;
+import staff.system.staff.AbstractStaff;
+import staff.system.Staff;
+import staff.system.staff.StaffID;
+import staff.system.supporting.Module;
+import staff.system.supporting.Name;
 import staff.system.smartcard.SmartCard;
+import staff.system.staff.lecturer.Lecturer;
+import staff.system.staff.researcher.Researcher;
 
 import java.io.IOException;
 import java.nio.file.Paths;

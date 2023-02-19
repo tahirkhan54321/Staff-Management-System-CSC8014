@@ -1,7 +1,8 @@
-package staff.system.staff;
+package staff.system.staff.lecturer;
 
-import staff.system.Module;
-import staff.system.Name;
+import staff.system.supporting.Module;
+import staff.system.supporting.Name;
+import staff.system.staff.AbstractStaff;
 
 import java.util.Date;
 import java.util.Set;
