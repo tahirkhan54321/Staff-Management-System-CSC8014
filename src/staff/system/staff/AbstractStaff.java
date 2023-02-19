@@ -10,11 +10,11 @@ import java.util.Date;
 
 public abstract class AbstractStaff implements Staff {
 
-    private Name name;
-    private Date dateOfBirth;
-    private StaffID staffID;
+    private final Name name;
+    private final Date dateOfBirth;
+    private final StaffID staffID;
     private SmartCard smartCard;
-    private String staffEmploymentStatus;
+    private final String staffEmploymentStatus;
     public static final String LECTURER = "Lecturer";
     public static final String RESEARCHER = "Researcher";
     public static final String PERMANENT = "Permanent";
@@ -62,6 +62,8 @@ public abstract class AbstractStaff implements Staff {
 
     @Override
     public abstract String getStaffType();
+
+    public abstract boolean isEnough();
 
     @Override
     public final String getStaffEmploymentStatus() {

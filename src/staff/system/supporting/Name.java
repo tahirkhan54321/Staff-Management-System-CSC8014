@@ -2,8 +2,8 @@ package staff.system.supporting;
 
 public class Name {
 
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 
     public Name(String firstName, String lastName) {
         this.firstName = firstName;
@@ -14,16 +14,8 @@ public class Name {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String toString() {

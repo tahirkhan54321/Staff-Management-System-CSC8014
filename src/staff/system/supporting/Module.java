@@ -2,10 +2,10 @@ package staff.system.supporting;
 
 public class Module {
 
-    private String moduleCode;
-    private String moduleName;
-    private int semester;
-    private int credits;
+    private final String moduleCode;
+    private final String moduleName;
+    private final int semester;
+    private final int credits;
 
     public Module(String moduleCode, String moduleName, int semester, int credits) {
         this.moduleCode = moduleCode;

@@ -40,7 +40,12 @@ public class StaffManager {
 			readModules.add(module);
 			counter++;
 		}
-		allModules.addAll(readModules);
+
+		if (readModules.isEmpty()) {
+			readModules = Collections.EMPTY_SET;
+		} else {
+			allModules.addAll(readModules);
+		}
 
 		System.out.println(counter + " modules have been added to the set.");
 		return readModules;
@@ -61,7 +66,12 @@ public class StaffManager {
 			Name name = new Name(firstName, secondName);
 			readStudents.add(name);
 		}
-		allStudents.addAll(readStudents);
+
+		if (readStudents.isEmpty()) {
+			readStudents = Collections.EMPTY_SET;
+		} else {
+			allStudents.addAll(readStudents);
+		}
 
 		System.out.println(readStudents.size() + " students have been added to the set.");
 		return readStudents;
@@ -126,8 +136,7 @@ public class StaffManager {
 
 	public Staff employStaff(String firstName, String lastName, Date dob, String staffType, String employmentStatus) throws InstantiationException {
 		Name name = new Name(firstName, lastName);
-		SmartCard smartCard = new SmartCard(name, dob);
-		smartCard.setExpiryDate(employmentStatus);
+		SmartCard smartCard = new SmartCard(name, dob, employmentStatus);
 
 		AbstractStaff thisStaff = AbstractStaff.getInstance(staffType, name, dob, employmentStatus);
 		thisStaff.assignSmartCard(smartCard);

@@ -7,7 +7,7 @@ import staff.system.staff.AbstractStaff;
 import java.util.Date;
 import java.util.Set;
 
-public class Lecturer extends AbstractStaff {
+ public class Lecturer extends AbstractStaff {
 
     private Set<Module> modules;
 
@@ -39,10 +39,10 @@ public class Lecturer extends AbstractStaff {
         return allModules;
     }
 
-    public boolean enoughModules() {
+    public boolean isEnough() {
         boolean isEnough = false;
         int totalCredits = 0;
-        for (Module module : this.modules) {
+        for (Module module : modules) {
                 totalCredits += module.getCredits();
             }
         if (totalCredits >= 40) {

@@ -28,13 +28,13 @@ public class Researcher extends AbstractStaff {
     public String list() {
         String allStudentNames = "";
         System.out.println("Here are all the students assigned to this Researcher (" + this.getName() + "): ");
-        for (Name name : this.students) {
+        for (Name name : students) {
             allStudentNames = allStudentNames + name.toString() + "\n";
         }
         return allStudentNames;
     }
 
-    public boolean enoughStudents() {
+    public boolean isEnough() {
         boolean isEnough = false;
         if (students.size() >= 10) {
             isEnough = true;

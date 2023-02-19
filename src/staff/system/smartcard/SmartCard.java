@@ -3,25 +3,26 @@ package staff.system.smartcard;
 import staff.system.supporting.Name;
 import staff.system.staff.AbstractStaff;
 
+
 import java.util.Calendar;
 import java.util.Date;
 
-public class SmartCard {
+public class SmartCard implements Cloneable {
 
-    private Name name;
-    private Date dateOfBirth;
+    private final Name name;
+    private final Date dateOfBirth;
     private SmartCardNumber smartCardNumber;
-    private Date dateOfIssue;
+    private final Date dateOfIssue;
     private Date expiryDate;
 
 
-    public SmartCard(Name name, Date dateOfBirth) throws InstantiationException {
+    public SmartCard(Name name, Date dateOfBirth, String employmentStatus) throws InstantiationException {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         String initials = String.valueOf(this.name.getFirstName().charAt(0) + this.name.getLastName().charAt(0));
         this.smartCardNumber = smartCardNumber.getInstance(initials);
         this.dateOfIssue = Calendar.getInstance().getTime();
-        this.expiryDate = Calendar.getInstance().getTime();
+        this.expiryDate = setExpiryDate(employmentStatus);
 
         //objects created before the exception is thrown will not be initialized if the constructor fails.
 
@@ -61,19 +62,25 @@ public class SmartCard {
         return expiryDate;
     }
 
-
-    public void setExpiryDate(String staffType) { //todo: double check if this should even have an input parameter. Spec would suggest that it shouldn't
+    private Date setExpiryDate(String employmentStatus) {
         Calendar temporaryDate = null;
         temporaryDate.setTime(dateOfIssue);
-        if (staffType.equalsIgnoreCase(AbstractStaff.PERMANENT)) {
+        if (employmentStatus.equalsIgnoreCase(AbstractStaff.PERMANENT)) {
             temporaryDate.add(Calendar.YEAR,10);
             expiryDate = temporaryDate.getTime();
-        } else if (staffType.equalsIgnoreCase(AbstractStaff.CONTRACT)) {
+        } else if (employmentStatus.equalsIgnoreCase(AbstractStaff.CONTRACT)) {
             temporaryDate.add(Calendar.YEAR, 2);
             expiryDate = temporaryDate.getTime();
         } else {
-            throw new IllegalArgumentException("The staffType does not exist: " + staffType);
+            throw new IllegalArgumentException("The employment status does not exist: " + employmentStatus);
         }
+        return expiryDate;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        SmartCard clone = (SmartCard) super.clone();
+
+        return clone;
     }
 
 }
