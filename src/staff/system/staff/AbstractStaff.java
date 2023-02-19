@@ -20,6 +20,12 @@ public abstract class AbstractStaff implements Staff {
     public static final String PERMANENT = "Permanent";
     public static final String CONTRACT = "Contract";
 
+    /**
+     * Constructor for an abstract staff member
+     * @param name name of staff member
+     * @param dateOfBirth date of birth of staff member
+     * @param staffEmploymentStatus permanent/contract
+     */
     protected AbstractStaff(Name name, Date dateOfBirth, String staffEmploymentStatus) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -27,6 +33,14 @@ public abstract class AbstractStaff implements Staff {
         this.staffEmploymentStatus = staffEmploymentStatus;
     }
 
+    /**
+     * Factory method to create a lecturer/researcher
+     * @param staffType lecturer/researcher
+     * @param name name of staff member
+     * @param dateOfBirth date of birth of staff member
+     * @param staffEmploymentStatus permanent/contract
+     * @return an AbstractStaff object, effectively a lecturer or researcher
+     */
     public static AbstractStaff getInstance(String staffType, Name name, Date dateOfBirth, String staffEmploymentStatus) {
         if (!(staffEmploymentStatus.equalsIgnoreCase(PERMANENT) || staffEmploymentStatus.equalsIgnoreCase(CONTRACT))) {
             throw new IllegalArgumentException("Staff Employment Status is not valid: " + staffEmploymentStatus);
@@ -40,6 +54,11 @@ public abstract class AbstractStaff implements Staff {
         }
     }
 
+    /**
+     * assigns a smartCard to an Abstract Staff object if one doesn't already exist for it.
+     * Must be invoked for all staff members we want to assign a smartCard to
+     * @param smartCard the smartCard we attempt to assign
+     */
     public final void assignSmartCard(SmartCard smartCard) {
         if (this.smartCard != null) {
             throw new IllegalStateException("The staff member has a smartcard already assigned to it: " + this.getSmartCard());
@@ -48,27 +67,49 @@ public abstract class AbstractStaff implements Staff {
         }
     }
 
-    public final Name getName() { return name; }
+    /**
+     * getter for name
+     * @return clone of name
+     */
+    public final Name getName() { return new Name(name.getFirstName(), name.getLastName()); }
 
+    /**
+     * getter for staffID
+     * @return staffID
+     */
     @Override
-    public final StaffID getStaffID() {
-        return staffID;
-    }
+    public final StaffID getStaffID() { return staffID; } // should be immutable due to getInstance
 
+    /**
+     * getter for smartCard
+     * @return smartCard
+     */
     @Override
-    public final SmartCard getSmartCard() {
-        return smartCard;
-    }
+    public final SmartCard getSmartCard() { return smartCard; } // should be immutable due to getInstance
 
+    /**
+     * getter for staffType
+     * @return lecturer/researcher
+     */
     @Override
     public abstract String getStaffType();
 
+    /**
+     * getter for staffEmploymentStatus
+     * @return permanent/contract
+     */
+    @Override
+    public final String getStaffEmploymentStatus() { return staffEmploymentStatus; }
+
+    /**
+     * abstract method for researcher/lecturer to implement in regard to enough students/modules respectively
+     * @return true/false
+     */
     public abstract boolean isEnough();
 
-    @Override
-    public final String getStaffEmploymentStatus() {
-        return staffEmploymentStatus;
-    }
-
+    /**
+     * abstract method for researcher/lecturer to implement in regard to students/modules sets respectively
+     * @return set of students or set of modules
+     */
     public abstract String list();
 }

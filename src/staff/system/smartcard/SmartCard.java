@@ -7,7 +7,7 @@ import staff.system.staff.AbstractStaff;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SmartCard implements Cloneable {
+public class SmartCard {
 
     private final Name name;
     private final Date dateOfBirth;
@@ -15,8 +15,15 @@ public class SmartCard implements Cloneable {
     private final Date dateOfIssue;
     private Date expiryDate;
 
-
-    public SmartCard(Name name, Date dateOfBirth, String employmentStatus) throws InstantiationException {
+    /**
+     * constructor for the smartcard
+     * @param name name of staff member
+     * @param dateOfBirth date of birth of the staff member
+     * @param employmentStatus permanent/contract
+     * @throws InstantiationException if smartCardNumber cannot be assigned
+     * @throws IllegalArgumentException if the staff's age requirements are not met 22-67
+     */
+    public SmartCard(Name name, Date dateOfBirth, String employmentStatus) throws InstantiationException, IllegalArgumentException {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         String initials = String.valueOf(this.name.getFirstName().charAt(0) + this.name.getLastName().charAt(0));
@@ -26,7 +33,7 @@ public class SmartCard implements Cloneable {
 
         //objects created before the exception is thrown will not be initialized if the constructor fails.
 
-        //local copies for comparison without mutating constructor's dates
+        //local copies for comparison without mutating constructor's date
         Calendar dobCopy = Calendar.getInstance();
         dobCopy.setTime(this.dateOfBirth);
         Calendar today = Calendar.getInstance();
@@ -42,26 +49,45 @@ public class SmartCard implements Cloneable {
         }
     }
 
-    public Name getName() {
-        return name;
-    }
+    /**
+     * getter for clone of name
+     * @return name assigned to smartcard
+     */
+    public Name getName() { return new Name(name.getFirstName(), name.getLastName()); }
 
+    /**
+     * getter for clone of date of birth
+     * @return date of birth
+     */
     public Date getDateOfBirth() {
-        return dateOfBirth;
+        return (Date) dateOfBirth.clone();
     }
 
-    public SmartCardNumber getSmartCardNumber() {
-        return smartCardNumber;
-    }
+    /**
+     * getter for smartCardNumber
+     * @return smartCardNumber
+     */
+    public SmartCardNumber getSmartCardNumber() { return smartCardNumber; } //should be immutable due to getInstance method
 
+    /**
+     * getter for date of issue
+     * @return date of issue
+     */
     public Date getDateOfIssue() {
-        return dateOfIssue;
+        return (Date) dateOfIssue.clone();
     }
 
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
+    /**
+     * getter for clone of expiry date
+     * @return expiry date
+     */
+    public Date getExpiryDate() { return (Date) expiryDate.clone(); }
 
+    /**
+     * setter for the expiry date conditional upon whether the staff member for this card is permanent or contract
+     * @param employmentStatus permanent/contract
+     * @return expiryDate
+     */
     private Date setExpiryDate(String employmentStatus) {
         Calendar temporaryDate = null;
         temporaryDate.setTime(dateOfIssue);
@@ -75,12 +101,6 @@ public class SmartCard implements Cloneable {
             throw new IllegalArgumentException("The employment status does not exist: " + employmentStatus);
         }
         return expiryDate;
-    }
-
-    public Object clone() throws CloneNotSupportedException {
-        SmartCard clone = (SmartCard) super.clone();
-
-        return clone;
     }
 
 }

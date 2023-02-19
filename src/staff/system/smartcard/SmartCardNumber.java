@@ -10,6 +10,13 @@ public class SmartCardNumber {
     private final String strRep;
     private static final Map<String, SmartCardNumber> ALL_SMART_CARD_NUMBERS = new HashMap<>();
 
+    /**
+     * Constructor - private
+     * @param initials initials of the staff member
+     * @param randomFiveDigitInteger for an appropriate amount of permutations
+     * @param yearOfIssuance the year the object was instantiated
+     * @param strRep string representation for factory
+     */
     private SmartCardNumber(String initials, int randomFiveDigitInteger, int yearOfIssuance, String strRep) {
         this.initials = initials;
         this.randomFiveDigitInteger = randomFiveDigitInteger;
@@ -17,6 +24,12 @@ public class SmartCardNumber {
         this.strRep = strRep;
     }
 
+    /**
+     * Factory method for generation of unique SmartCardNumber
+     * @param initials the initials of the staff member
+     * @return SmartCardNumber object
+     * @throws InstantiationException if the smartcardnumber is not unique
+     */
     public static SmartCardNumber getInstance(String initials) throws InstantiationException {
 
         Random random = new Random();
@@ -37,6 +50,10 @@ public class SmartCardNumber {
         return smartCardNumber;
     }
 
+    /**
+     * toString
+     * @return string representation of the SmartCardNumber
+     */
     @Override
     public String toString() { return strRep; }
 
