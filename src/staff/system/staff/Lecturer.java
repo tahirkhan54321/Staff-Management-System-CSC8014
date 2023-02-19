@@ -10,9 +10,9 @@ public class Lecturer extends AbstractStaff {
 
     private Set<Module> modules;
 
-    public Lecturer(Name name, Date dateOfBirth, String staffType, String staffEmploymentStatus) {
+    public Lecturer(Name name, Date dateOfBirth, String staffEmploymentStatus) {
         //Java will call the StaffID, SmartCard parts of the AbstractStaff constructor if I don't define them here
-        super(name, dateOfBirth, staffType, staffEmploymentStatus);
+        super(name, dateOfBirth, staffEmploymentStatus);
         this.modules = null;
     }
 
@@ -22,6 +22,20 @@ public class Lecturer extends AbstractStaff {
 
     public void setModules(Set<Module> modules) {
         this.modules = modules;
+    }
+
+    @Override
+    public String getStaffType() {
+        return AbstractStaff.LECTURER;
+    }
+
+    public String list() {
+        String allModules = "";
+        System.out.println("Here are all the modules assigned to this Lecturer (" + this.getName() + "): ");
+        for (Module module: modules) {
+            allModules = allModules + module.toString() + "\n";
+        }
+        return allModules;
     }
 
     public boolean enoughModules() {
@@ -34,15 +48,6 @@ public class Lecturer extends AbstractStaff {
             isEnough = true;
         }
         return isEnough;
-    }
-
-    public String listModules() {
-        String allModules = "";
-        System.out.println("Here are all the modules assigned to this Lecturer (" + this.getName() + "): ");
-        for (Module module: modules) {
-            allModules = allModules + module.toString() + "\n";
-        }
-        return allModules;
     }
 
 }

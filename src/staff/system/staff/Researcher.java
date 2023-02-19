@@ -10,9 +10,9 @@ public class Researcher extends AbstractStaff {
 
     private Set<Name> students;
 
-    public Researcher(Name name, Date dateOfBirth, String staffType, String staffEmploymentStatus) {
+    public Researcher(Name name, Date dateOfBirth, String staffEmploymentStatus) {
         //Java will call the StaffID, SmartCard parts of the AbstractStaff constructor if I don't define them here
-        super(name, dateOfBirth, staffType, staffEmploymentStatus);
+        super(name, dateOfBirth, staffEmploymentStatus);
         this.students = null;
     }
 
@@ -20,7 +20,12 @@ public class Researcher extends AbstractStaff {
         this.students = students;
     }
 
-    public String listStudentNames() {
+    @Override
+    public String getStaffType() {
+        return AbstractStaff.RESEARCHER;
+    }
+
+    public String list() {
         String allStudentNames = "";
         System.out.println("Here are all the students assigned to this Researcher (" + this.getName() + "): ");
         for (Name name : this.students) {

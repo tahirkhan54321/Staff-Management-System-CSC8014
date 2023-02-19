@@ -1,6 +1,7 @@
 package staff.system.smartcard;
 
 import staff.system.Name;
+import staff.system.staff.AbstractStaff;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -64,10 +65,10 @@ public class SmartCard {
     public void setExpiryDate(String staffType) { //todo: double check if this should even have an input parameter. Spec would suggest that it shouldn't
         Calendar temporaryDate = null;
         temporaryDate.setTime(dateOfIssue);
-        if (staffType.equalsIgnoreCase("permanent")) {
+        if (staffType.equalsIgnoreCase(AbstractStaff.PERMANENT)) {
             temporaryDate.add(Calendar.YEAR,10);
             expiryDate = temporaryDate.getTime();
-        } else if (staffType.equalsIgnoreCase("contract")) {
+        } else if (staffType.equalsIgnoreCase(AbstractStaff.CONTRACT)) {
             temporaryDate.add(Calendar.YEAR, 2);
             expiryDate = temporaryDate.getTime();
         } else {

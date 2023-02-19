@@ -24,10 +24,10 @@ public class StaffManager {
 
 		while (scanner.hasNext()) {
 			String line = scanner.nextLine();
-			String partsOfModule[] = line.split(",");
+			String partsOfModule[] = line.split(", ");
 
 			String moduleCode = partsOfModule[0];
-			String moduleName = partsOfModule[1]; //todo: remove the space?
+			String moduleName = partsOfModule[1];
 			int semester = Integer.valueOf(partsOfModule[2]);
 			int credits = Integer.valueOf(partsOfModule[3]);
 			Module module = new Module(moduleCode, moduleName, semester, credits);
@@ -43,7 +43,6 @@ public class StaffManager {
 
 
 	public Set<Name> readInStudents(String path) throws IOException {
-		int counter = 0;
 		Set<Name> readStudents = new HashSet<>();
 		Scanner scanner = new Scanner(Paths.get(path));
 
@@ -56,26 +55,26 @@ public class StaffManager {
 
 			Name name = new Name(firstName, secondName);
 			readStudents.add(name);
-			counter++;
 		}
 		allStudents.addAll(readStudents);
 
-		System.out.println(counter + " students have been added to the set.");
-		//add your code here. Do NOT change the method signature
+		System.out.println(readStudents.size() + " students have been added to the set.");
 		return readStudents;
 	}
 
 
 	public int noOfStaff(String type) {
+		if(!(type.equalsIgnoreCase(AbstractStaff.LECTURER) || type.equalsIgnoreCase(AbstractStaff.RESEARCHER))) {
+			throw new IllegalArgumentException(type + " is not a valid staff type");
+		}
 		int counter = 0;
 		Iterator<Map.Entry<StaffID, AbstractStaff>> iterator = allStaff.entrySet().iterator();
 		while (iterator.hasNext()) {
 			Map.Entry<StaffID, AbstractStaff> entry = iterator.next();
-			if (entry.getValue().getStaffType().equals(type)) {
+			if (entry.getValue().getStaffType().equalsIgnoreCase(type)) {
 				counter++;
 			}
 		}
-		//add your code here. Do NOT change the method signature
 		return counter;
 	}
 
@@ -99,54 +98,37 @@ public class StaffManager {
 		if (!(allModules.containsAll(modules) || allStudents.containsAll(students))) {
 			throw new IllegalArgumentException("Modules and Students parameters don't exist in the list.");
 		}
-		if (!(staffType.equalsIgnoreCase("Lecturer") || staffType.equalsIgnoreCase("Researcher"))) {
+		if (!(staffType.equalsIgnoreCase(AbstractStaff.LECTURER) || staffType.equalsIgnoreCase(AbstractStaff.RESEARCHER))) {
 			throw new IllegalArgumentException("Staff type isn't Lecturer or Researcher for ID: " + id);
 		}
 
-		if (staffType.equalsIgnoreCase("Lecturer") && modulesExist) {
+		if (staffType.equalsIgnoreCase(AbstractStaff.LECTURER) && modulesExist) {
 			Lecturer lecturer = (Lecturer) allStaff.get(id);
 			lecturer.setModules(modules);
 			allStaff.put(id, lecturer);
 			return true;
 		}
-		if (staffType.equalsIgnoreCase("Researcher") && studentsExist) {
+		if (staffType.equalsIgnoreCase(AbstractStaff.RESEARCHER) && studentsExist) {
 				Researcher researcher = (Researcher) allStaff.get(id);
 				researcher.setStudents(students);
 				allStaff.put(id, researcher);
 				return true;
 		}
 
-		/* todo: I need to:
-			1) cover cases when type is inputted incorrectly - this shouldn't be possible if we're using an existing StaffID
-			2) cover cases where sets do not contain all - see what +modules and +students
-			3) add validation for get(id)
-			4) make sure the return types make sense
-		 */
-		//add your code here. Do NOT change the method signature
 		return false;
 	}
 
 
 	public Staff employStaff(String firstName, String lastName, Date dob, String staffType, String employmentStatus) throws InstantiationException {
 		Name name = new Name(firstName, lastName);
-		Staff thisStaff = null;
 		SmartCard smartCard = new SmartCard(name, dob);
 		smartCard.setExpiryDate(employmentStatus);
 
-		if (staffType.equalsIgnoreCase("Lecturer")) {
-			Lecturer lecturer = new Lecturer(name, dob, staffType, employmentStatus);
-			lecturer.assignSmartCard(smartCard);
-			allStaff.put(lecturer.getStaffID(), lecturer);
-			thisStaff = (Staff) lecturer;
-		} else if (staffType.equalsIgnoreCase("Researcher")) {
-			Researcher researcher = new Researcher(name, dob, staffType, employmentStatus);
-			allStaff.put(researcher.getStaffID(), researcher);
-			researcher.assignSmartCard(smartCard);
-			thisStaff = (Staff) researcher;
-		} else {
-			throw new IllegalArgumentException("The staffType is not Lecturer or Researcher: " + staffType);
-		}
-		//add your code here. Do NOT change the method signature
+		AbstractStaff thisStaff = AbstractStaff.getInstance(staffType, name, dob, employmentStatus);
+		thisStaff.assignSmartCard(smartCard);
+		allStaff.put(thisStaff.getStaffID(), thisStaff);
+
+//		note that validation for staffType and employmentStatus exists in getInstance, validation for dob is in smartCard
 		return thisStaff;
 	}
 
@@ -158,7 +140,6 @@ public class StaffManager {
 			Map.Entry<StaffID, AbstractStaff> entry = iterator.next();
 			everyStaffObj.add(entry.getValue());
 			}
-		//add your code here. Do NOT change the method signature
 		return everyStaffObj;
 	}
 
@@ -170,11 +151,7 @@ public class StaffManager {
 		} else {
 			throw new IllegalArgumentException(id + " id does not exist");
 		}
-		//add your code here. Do NOT change the method signature
 	}
-
-
-
 
 
 }
