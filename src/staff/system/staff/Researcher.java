@@ -1,4 +1,4 @@
-package staff.system.staff.researcher;
+package staff.system.staff;
 
 import staff.system.supporting.Name;
 import staff.system.staff.AbstractStaff;

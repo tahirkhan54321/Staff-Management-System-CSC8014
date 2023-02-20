@@ -6,8 +6,8 @@ import staff.system.staff.StaffID;
 import staff.system.supporting.Module;
 import staff.system.supporting.Name;
 import staff.system.smartcard.SmartCard;
-import staff.system.staff.lecturer.Lecturer;
-import staff.system.staff.researcher.Researcher;
+import staff.system.staff.Lecturer;
+import staff.system.staff.Researcher;
 
 import java.io.IOException;
 import java.nio.file.Paths;

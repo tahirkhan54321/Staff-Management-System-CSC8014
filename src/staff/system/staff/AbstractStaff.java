@@ -3,8 +3,6 @@ package staff.system.staff;
 import staff.system.Staff;
 import staff.system.supporting.Name;
 import staff.system.smartcard.SmartCard;
-import staff.system.staff.lecturer.Lecturer;
-import staff.system.staff.researcher.Researcher;
 
 import java.util.Date;
 

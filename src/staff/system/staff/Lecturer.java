@@ -1,4 +1,4 @@
-package staff.system.staff.lecturer;
+package staff.system.staff;
 
 import staff.system.supporting.Module;
 import staff.system.supporting.Name;
