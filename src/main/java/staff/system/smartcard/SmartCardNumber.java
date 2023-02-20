@@ -38,14 +38,18 @@ class SmartCardNumber {
         initials = initials.toUpperCase();
         int randomFourDigitInteger = random.nextInt(10000);
         int yearOfIssuance = today.get(Calendar.YEAR);
-        String strRep = "";
+        String strRep = initials + randomFourDigitInteger + yearOfIssuance;
 
         SmartCardNumber smartCardNumber = ALL_SMART_CARD_NUMBERS.get(strRep);
-        if (smartCardNumber == null) {
-            smartCardNumber = new SmartCardNumber(initials, randomFourDigitInteger, yearOfIssuance, strRep);
-            ALL_SMART_CARD_NUMBERS.put(strRep, smartCardNumber);
-        } else {
-            throw new InstantiationException("SmartCard Number is not unique: " + smartCardNumber);
+        try {
+            if (smartCardNumber == null) {
+                smartCardNumber = new SmartCardNumber(initials, randomFourDigitInteger, yearOfIssuance, strRep);
+                ALL_SMART_CARD_NUMBERS.put(strRep, smartCardNumber);
+            } else {
+                throw new InstantiationException("SmartCard Number is not unique: " + smartCardNumber);
+            }
+        } catch (InstantiationException e) {
+            System.out.println(e);
         }
         return smartCardNumber;
     }

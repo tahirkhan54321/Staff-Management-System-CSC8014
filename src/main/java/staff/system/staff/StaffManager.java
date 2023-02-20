@@ -11,9 +11,26 @@ import java.util.*;
 
 public class StaffManager {
 
-	private static Set<Module> allModules = new HashSet<>();
-	private static Set<Name> allStudents = new HashSet<>();
-	private static Map<StaffID, AbstractStaff> allStaff = new HashMap<>();
+	private static StaffManager instance = null;
+	private Set<Module> allModules = new HashSet<>();
+	private Set<Name> allStudents = new HashSet<>();
+	private Map<StaffID, AbstractStaff> allStaff = new HashMap<>();
+
+	/*
+	the structure for the singleton pattern was taken from GeeksforGeeks:
+    https://www.geeksforgeeks.org/singleton-class-java/
+    Original Author - GeeksforGeeks, "GeeksforGeeks"
+    Modifying Author – Tahir Khan
+	*/
+	private StaffManager() {
+	}
+
+	public static StaffManager getInstance() {
+		if (instance == null) {
+			instance = new StaffManager();
+		}
+		return instance;
+	}
 
 	/**
 	 *This method should allow modules information to be read from a pre-defined data file and stored in a set of modules
@@ -80,10 +97,10 @@ public class StaffManager {
 			} else {
 				allStudents.addAll(readStudents);
 			}
+			System.out.println(readStudents.size() + " students have been added to the set.");
 		} catch (IOException e) {
 			System.out.println("Filepath does not exist: " + path);
 		}
-		System.out.println(readStudents.size() + " students have been added to the set.");
 		return readStudents;
 	}
 
@@ -199,6 +216,9 @@ public class StaffManager {
 		} catch (IllegalArgumentException | InstantiationException f) {
 			System.out.println(f.getMessage());
 			return null; //not sure how to avoid returning null
+		} catch (NullPointerException g) {
+			System.out.println("staffType is not valid " + g);
+			return null;
 		}
 	}
 
@@ -207,7 +227,7 @@ public class StaffManager {
 	 * @return all staff in a collection
 	 */
 	public Collection<Staff> getAllStaff() {
-		Collection<Staff> everyStaffObj = null;
+		Collection<Staff> everyStaffObj = new HashSet<>();
 		/*
 		this way of iterating through a hashmap was taken from GeeksforGeeks:
         https://www.geeksforgeeks.org/how-to-iterate-hashmap-in-java/
@@ -240,5 +260,12 @@ public class StaffManager {
 		}
 	}
 
-
+//	@Override
+//	public String toString() {
+//		String result = "";
+//		for (Map.Entry<?, ?> entry : allStaff.entrySet()) {
+//			result += entry.getKey() + ":" + entry.getValue() + ", ";
+//		}
+//		return result;
+//	}
 }

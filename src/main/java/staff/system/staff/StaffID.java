@@ -25,18 +25,23 @@ class StaffID {
      * Factory to ensure uniqueness
      * @return unique staffID object
      */
-    public static StaffID getInstance() {
+    public static StaffID getInstance() throws IllegalArgumentException {
         Random random = new Random();
-        char letterComponent = (char) (random.nextInt(26) + 'a');
-        int numberComponent = random.nextInt(1000);
+        char letterComponent = (char) (random.nextInt(26) + 'a'); //random letter
+        int numberComponent = random.nextInt(1000); //random number 0-999
         String strRep = letterComponent + String.format("%03d",numberComponent);
 
         StaffID staffID = ALL_IDS.get(strRep);
-        if (staffID == null) {
-            staffID = new StaffID(letterComponent, numberComponent, strRep); //unique instance if it's not already in hashmap
-            ALL_IDS.put(strRep, staffID);
-        } else {
-            throw new IllegalArgumentException("ID has already been taken, please try again:  " + staffID);
+
+        try {
+            if (staffID == null) {
+                staffID = new StaffID(letterComponent, numberComponent, strRep); //unique instance if it's not already in hashmap
+                ALL_IDS.put(strRep, staffID);
+            } else {
+                throw new IllegalArgumentException("ID has already been taken, please try again:  " + staffID);
+            }
+        } catch (IllegalStateException e) {
+            System.out.println(e);
         }
         return staffID;
     }
@@ -45,7 +50,7 @@ class StaffID {
      * getter for the letter component of the staffID
      * @return character
      */
-    public char getLetterComponent() {
+    char getLetterComponent() {
         return letterComponent;
     }
 
@@ -53,7 +58,7 @@ class StaffID {
      * getter for number component of the staffID
      * @return 3 digit number in string format
      */
-    public String getNumberComponent() {
+    String getNumberComponent() {
         return String.format("%03d", numberComponent);
     }
 

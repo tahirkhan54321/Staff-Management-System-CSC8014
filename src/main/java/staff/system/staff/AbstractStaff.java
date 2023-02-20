@@ -5,7 +5,7 @@ import staff.system.smartcard.SmartCard;
 
 import java.util.Date;
 
-abstract class AbstractStaff implements Staff {
+public abstract class AbstractStaff implements Staff {
 
     private final Name name;
     private final Date dateOfBirth;
@@ -23,11 +23,12 @@ abstract class AbstractStaff implements Staff {
      * @param dateOfBirth date of birth of staff member
      * @param staffEmploymentStatus permanent/contract
      */
-    protected AbstractStaff(Name name, Date dateOfBirth, String staffEmploymentStatus) {
+    AbstractStaff(Name name, Date dateOfBirth, String staffEmploymentStatus) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.staffID = StaffID.getInstance();
         this.staffEmploymentStatus = staffEmploymentStatus;
+        this.smartCard = null;
     }
 
     /**
@@ -38,29 +39,42 @@ abstract class AbstractStaff implements Staff {
      * @param staffEmploymentStatus permanent/contract
      * @return an AbstractStaff object, effectively a lecturer or researcher
      */
-    public static AbstractStaff getInstance(String staffType, Name name, Date dateOfBirth, String staffEmploymentStatus) {
-        if (!(staffEmploymentStatus.equalsIgnoreCase(PERMANENT) || staffEmploymentStatus.equalsIgnoreCase(CONTRACT))) {
-            throw new IllegalArgumentException("Staff Employment Status is not valid: " + staffEmploymentStatus);
+    public static AbstractStaff getInstance(String staffType, Name name, Date dateOfBirth,
+                                            String staffEmploymentStatus) throws IllegalArgumentException {
+        try {
+            if (!(staffEmploymentStatus.equalsIgnoreCase(PERMANENT) || staffEmploymentStatus.equalsIgnoreCase(CONTRACT))) {
+                throw new IllegalArgumentException("Staff Employment Status is not valid");
+            }
+            if(!(staffType.equalsIgnoreCase(LECTURER) || staffType.equalsIgnoreCase(RESEARCHER))) {
+                throw new IllegalArgumentException("Staff Type is not valid");
+            }
         }
+        catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
+        AbstractStaff staffObject = null;
         if (staffType.equalsIgnoreCase(LECTURER)) {
-            return new Lecturer(name, dateOfBirth, staffEmploymentStatus);
+            staffObject = new Lecturer(name, dateOfBirth, staffEmploymentStatus);
         } else if (staffType.equalsIgnoreCase(RESEARCHER)) {
-            return new Researcher(name, dateOfBirth, staffEmploymentStatus);
-        } else {
-            throw new IllegalArgumentException("Staff Type is not valid: " + staffType);
+            staffObject = new Researcher(name, dateOfBirth, staffEmploymentStatus);
         }
+        return staffObject;
     }
 
     /**
      * assigns a smartCard to an Abstract Staff object if one doesn't already exist for it.
      * Must be invoked for all staff members we want to assign a smartCard to
-     * @param smartCard the smartCard we attempt to assign
+     * @param sc the smartCard we attempt to assign
      */
-    public final void assignSmartCard(SmartCard smartCard) {
-        if (this.smartCard != null) {
-            throw new IllegalStateException("The staff member has a smartcard already assigned to it: " + this.getSmartCard());
-        } else {
-            this.smartCard = smartCard;
+    public final void assignSmartCard(SmartCard sc) throws IllegalStateException {
+        try {
+            if (smartCard != null) {
+                throw new IllegalStateException("The staff member has a smartcard already assigned to it");
+            } else {
+                smartCard = sc;
+            }
+        } catch (IllegalStateException e) {
+            System.out.println(e);
         }
     }
 
@@ -75,14 +89,14 @@ abstract class AbstractStaff implements Staff {
      * @return staffID
      */
     @Override
-    public final StaffID getStaffID() { return staffID; } // should be immutable due to getInstance
+    public final StaffID getStaffID() { return staffID; } // should be immutable due to getInstance of Staff ID
 
     /**
      * getter for smartCard
      * @return smartCard
      */
     @Override
-    public final SmartCard getSmartCard() { return smartCard; } // should be immutable due to getInstance
+    public final SmartCard getSmartCard() { return smartCard; } // should be immutable due to getInstance of SmartCard
 
     /**
      * getter for staffType

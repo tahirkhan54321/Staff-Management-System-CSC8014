@@ -27,7 +27,7 @@ public class SmartCard {
     public SmartCard(Name name, Date dateOfBirth, String employmentStatus) throws InstantiationException, IllegalArgumentException {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        String initials = String.valueOf(this.name.getFirstName().charAt(0) + this.name.getLastName().charAt(0));
+        String initials = String.valueOf(name.getFirstName().charAt(0) + name.getLastName().charAt(0));
         this.smartCardNumber = smartCardNumber.getInstance(initials);
         this.dateOfIssue = Calendar.getInstance().getTime();
         this.employmentStatus = employmentStatus;
@@ -36,18 +36,22 @@ public class SmartCard {
         //objects created before the exception is thrown will not be initialized if the constructor fails.
 
         //local copies for comparison without mutating constructor's date
-        Calendar dobCopy = Calendar.getInstance();
-        dobCopy.setTime(this.dateOfBirth);
-        Calendar today = Calendar.getInstance();
-        int age = today.get(Calendar.YEAR) - dobCopy.get(Calendar.YEAR);
-        if(today.get(Calendar.DAY_OF_YEAR) < dobCopy.get(Calendar.DAY_OF_YEAR)) {
-            age--;
-        }
-        if (age < 22) {
-            throw new IllegalArgumentException("The Staff's age is below 22: " + age);
-        }
-        if (age > 67) {
-            throw new IllegalArgumentException("The Staff's age is above 67: " + age);
+        try {
+            Calendar dobCopy = Calendar.getInstance();
+            dobCopy.setTime(this.dateOfBirth);
+            Calendar today = Calendar.getInstance();
+            int age = today.get(Calendar.YEAR) - dobCopy.get(Calendar.YEAR);
+            if (today.get(Calendar.DAY_OF_YEAR) < dobCopy.get(Calendar.DAY_OF_YEAR)) {
+                age--;
+            }
+            if (age < 22) {
+                throw new IllegalArgumentException("The Staff's age is below 22: " + age);
+            }
+            if (age > 67) {
+                throw new IllegalArgumentException("The Staff's age is above 67: " + age);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
         }
     }
 
@@ -89,17 +93,21 @@ public class SmartCard {
      * setter for the expiry date conditional upon whether the staff member for this card is permanent or contract
      * @return expiryDate
      */
-    private Date setExpiryDate() {
-        Calendar temporaryDate = null;
-        temporaryDate.setTime(dateOfIssue);
-        if (this.employmentStatus.equalsIgnoreCase(PERMANENT)) {
-            temporaryDate.add(Calendar.YEAR,10);
-            expiryDate = temporaryDate.getTime();
-        } else if (this.employmentStatus.equalsIgnoreCase(CONTRACT)) {
-            temporaryDate.add(Calendar.YEAR, 2);
-            expiryDate = temporaryDate.getTime();
-        } else {
-            throw new IllegalArgumentException("The employment status does not exist: " + employmentStatus);
+    private Date setExpiryDate() throws IllegalArgumentException {
+        try {
+            Calendar temporaryDate = Calendar.getInstance();
+            temporaryDate.setTime(dateOfIssue);
+            if (this.employmentStatus.equalsIgnoreCase(PERMANENT)) {
+                temporaryDate.add(Calendar.YEAR, 10);
+                expiryDate = temporaryDate.getTime();
+            } else if (this.employmentStatus.equalsIgnoreCase(CONTRACT)) {
+                temporaryDate.add(Calendar.YEAR, 2);
+                expiryDate = temporaryDate.getTime();
+            } else {
+                throw new IllegalArgumentException("The employment status does not exist: " + employmentStatus);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
         }
         return expiryDate;
     }
