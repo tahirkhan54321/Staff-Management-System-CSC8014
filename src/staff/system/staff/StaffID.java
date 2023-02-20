@@ -2,7 +2,7 @@ package staff.system.staff;
 
 import java.util.*;
 
-public class StaffID {
+class StaffID {
 
     private final char letterComponent;
     private final int numberComponent;

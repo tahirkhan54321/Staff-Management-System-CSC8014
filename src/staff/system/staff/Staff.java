@@ -1,10 +1,9 @@
-package staff.system;
+package staff.system.staff;
 
 import staff.system.smartcard.SmartCard;
-import staff.system.staff.StaffID;
 
 /**
- * staff.system.Staff - interface to university staff.
+ * staff.system.staff.Staff - interface to university staff.
  *
  * @author Rouaa Yassin Kassab
  * Copyright (C) 2023 Newcastle University, UK
@@ -32,16 +31,16 @@ public interface Staff {
  
 	//
 	/**
-	 * Returns the staff.system.Staff employment status.
-	 * a staff.system.Staff can be either on Permanent or fixed contract
+	 * Returns the staff.system.staff.Staff employment status.
+	 * a staff.system.staff.Staff can be either on Permanent or fixed contract
 	 * @return a string (Permanent or fixed)
 	 */
 	String getStaffEmploymentStatus();
 
 	
 	/**
-	 * Returns the staff.system.Staff type.
-	 * a staff.system.Staff can be either a Lecturer or a Researcher
+	 * Returns the staff.system.staff.Staff type.
+	 * a staff.system.staff.Staff can be either a Lecturer or a Researcher
 	 * @return a string (Lecturer or Researcher)
 	 */
     String getStaffType();

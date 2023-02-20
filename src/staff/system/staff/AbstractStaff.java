@@ -1,22 +1,21 @@
 package staff.system.staff;
 
-import staff.system.Staff;
 import staff.system.supporting.Name;
 import staff.system.smartcard.SmartCard;
 
 import java.util.Date;
 
-public abstract class AbstractStaff implements Staff {
+abstract class AbstractStaff implements Staff {
 
     private final Name name;
     private final Date dateOfBirth;
     private final StaffID staffID;
     private SmartCard smartCard;
     private final String staffEmploymentStatus;
-    public static final String LECTURER = "Lecturer";
-    public static final String RESEARCHER = "Researcher";
-    public static final String PERMANENT = "Permanent";
-    public static final String CONTRACT = "Contract";
+    static final String LECTURER = "Lecturer";
+    static final String RESEARCHER = "Researcher";
+    private static final String PERMANENT = "Permanent";
+    private static final String CONTRACT = "Contract";
 
     /**
      * Constructor for an abstract staff member

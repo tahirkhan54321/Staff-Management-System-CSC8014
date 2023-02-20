@@ -2,13 +2,12 @@ package staff.system.staff;
 
 import staff.system.supporting.Module;
 import staff.system.supporting.Name;
-import staff.system.staff.AbstractStaff;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
- public class Lecturer extends AbstractStaff {
+class Lecturer extends AbstractStaff {
 
     private Set<Module> modules;
 

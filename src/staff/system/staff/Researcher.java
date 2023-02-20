@@ -1,13 +1,12 @@
 package staff.system.staff;
 
 import staff.system.supporting.Name;
-import staff.system.staff.AbstractStaff;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Researcher extends AbstractStaff {
+class Researcher extends AbstractStaff {
 
     private Set<Name> students;
 

@@ -2,7 +2,7 @@ package staff.system.smartcard;
 
 import java.util.*;
 
-public class SmartCardNumber {
+class SmartCardNumber {
 
     private final String initials;
     private final int randomFiveDigitInteger;

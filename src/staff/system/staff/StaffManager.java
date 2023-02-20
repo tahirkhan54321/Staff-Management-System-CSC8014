@@ -1,13 +1,8 @@
-package staff.system.driver;
+package staff.system.staff;
 
-import staff.system.staff.AbstractStaff;
-import staff.system.Staff;
-import staff.system.staff.StaffID;
 import staff.system.supporting.Module;
 import staff.system.supporting.Name;
 import staff.system.smartcard.SmartCard;
-import staff.system.staff.Lecturer;
-import staff.system.staff.Researcher;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -16,8 +11,6 @@ import java.util.*;
 
 public class StaffManager {
 
-	//you can add attributes and other methods if needed. 
-	//you can throw an exception if needed
 	private static Set<Module> allModules = new HashSet<>();
 	private static Set<Name> allStudents = new HashSet<>();
 	private static Map<StaffID, AbstractStaff> allStaff = new HashMap<>();

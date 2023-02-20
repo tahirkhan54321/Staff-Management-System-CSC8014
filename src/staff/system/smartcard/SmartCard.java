@@ -1,8 +1,6 @@
 package staff.system.smartcard;
 
 import staff.system.supporting.Name;
-import staff.system.staff.AbstractStaff;
-
 
 import java.util.Calendar;
 import java.util.Date;
@@ -14,6 +12,9 @@ public class SmartCard {
     private SmartCardNumber smartCardNumber;
     private final Date dateOfIssue;
     private Date expiryDate;
+    private String employmentStatus;
+    public static final String PERMANENT = "Permanent";
+    public static final String CONTRACT = "Contract";
 
     /**
      * constructor for the smartcard
@@ -29,7 +30,8 @@ public class SmartCard {
         String initials = String.valueOf(this.name.getFirstName().charAt(0) + this.name.getLastName().charAt(0));
         this.smartCardNumber = smartCardNumber.getInstance(initials);
         this.dateOfIssue = Calendar.getInstance().getTime();
-        this.expiryDate = setExpiryDate(employmentStatus);
+        this.employmentStatus = employmentStatus;
+        this.expiryDate = setExpiryDate();
 
         //objects created before the exception is thrown will not be initialized if the constructor fails.
 
@@ -85,16 +87,15 @@ public class SmartCard {
 
     /**
      * setter for the expiry date conditional upon whether the staff member for this card is permanent or contract
-     * @param employmentStatus permanent/contract
      * @return expiryDate
      */
-    private Date setExpiryDate(String employmentStatus) {
+    private Date setExpiryDate() {
         Calendar temporaryDate = null;
         temporaryDate.setTime(dateOfIssue);
-        if (employmentStatus.equalsIgnoreCase(AbstractStaff.PERMANENT)) {
+        if (this.employmentStatus.equalsIgnoreCase(PERMANENT)) {
             temporaryDate.add(Calendar.YEAR,10);
             expiryDate = temporaryDate.getTime();
-        } else if (employmentStatus.equalsIgnoreCase(AbstractStaff.CONTRACT)) {
+        } else if (this.employmentStatus.equalsIgnoreCase(CONTRACT)) {
             temporaryDate.add(Calendar.YEAR, 2);
             expiryDate = temporaryDate.getTime();
         } else {
