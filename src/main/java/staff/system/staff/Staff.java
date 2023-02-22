@@ -20,23 +20,20 @@ public interface Staff {
 	 * @return the staff.system.staff.StaffID object
 	 */
 	StaffID getStaffID();
-	
-	
+
 	/**
 	 * Returns the smart card. 
 	 * All staff must have a smart card
 	 * @return the SmartCard object
 	 */
 	SmartCard getSmartCard();
- 
-	//
+
 	/**
 	 * Returns the staff.system.staff.Staff employment status.
 	 * a staff.system.staff.Staff can be either on Permanent or fixed contract
 	 * @return a string (Permanent or fixed)
 	 */
 	String getStaffEmploymentStatus();
-
 	
 	/**
 	 * Returns the staff.system.staff.Staff type.
@@ -44,6 +41,20 @@ public interface Staff {
 	 * @return a string (Lecturer or Researcher)
 	 */
     String getStaffType();
+
+	/**
+	 * a method which lists the modules which are assigned to lecturer or lists the student names which are assigned to a researcher
+	 * depending on staffType
+	 * @return a string representation of the list
+	 */
+	String list();
+
+	/**
+	 * a method which tells us if a lecturer has been assigned enough modules (40 credits in total or more) or
+	 * if a researcher has been assigned enough students (10 or more)
+	 * @return true/false
+	 */
+	boolean isEnough();
 
     
 }

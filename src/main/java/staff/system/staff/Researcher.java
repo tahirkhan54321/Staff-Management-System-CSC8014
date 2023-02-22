@@ -2,9 +2,7 @@ package staff.system.staff;
 
 import staff.system.supporting.Name;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 class Researcher extends AbstractStaff {
 
@@ -19,7 +17,7 @@ class Researcher extends AbstractStaff {
     public Researcher(Name name, Date dateOfBirth, String staffEmploymentStatus) {
         //Java will call the StaffID, SmartCard parts of the AbstractStaff constructor if I don't define them here
         super(name, dateOfBirth, staffEmploymentStatus);
-        this.students = null;
+        this.students = Collections.emptySet();
     }
 
     /**

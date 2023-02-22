@@ -145,7 +145,7 @@ public class Test {
         Testing addData from StaffManager
         I don't know how to get the randomly generated ids of the staff in the StaffManager hashmap. StaffID class cannot be imported
          */
-
+        //lecturerPermanentValid.addData(lecturerPermanentValid.getStaffID());
 
         /*
         Testing employStaff from StaffManager

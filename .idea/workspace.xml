@@ -4,35 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="815697d6-4b51-4e37-81e9-4bb2bcf3d917" name="Changes" comment="Structure completed, yet to test">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/staff/system/testing/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="815697d6-4b51-4e37-81e9-4bb2bcf3d917" name="Changes" comment="Tests v1 complete, program complete">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSC8014_Coursework_Staff_System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CSC8014_Coursework_Staff_System.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/smartcard/SmartCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/smartcard/SmartCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/smartcard/SmartCardNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/smartcard/SmartCardNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/staff/AbstractStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/AbstractStaff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/staff/Lecturer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/Lecturer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/staff/Researcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/Researcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/staff/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/staff/StaffID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/StaffID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/staff/StaffManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/StaffManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/supporting/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/supporting/Module.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/staff/system/supporting/Name.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/supporting/Name.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/staff/system/staff/Lecturer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/Lecturer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/staff/system/staff/Researcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/Researcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/staff/system/staff/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/staff/system/testing/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/testing/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +72,10 @@
       <workItem from="1676908180052" duration="1141000" />
       <workItem from="1676909336724" duration="1581000" />
       <workItem from="1676911401266" duration="233000" />
-      <workItem from="1676911655959" duration="17151000" />
+      <workItem from="1676911655959" duration="17545000" />
+      <workItem from="1676938525157" duration="19000" />
+      <workItem from="1676986368289" duration="3216000" />
+      <workItem from="1677098356014" duration="664000" />
     </task>
     <task id="LOCAL-00001" summary="Backup before restarting StaffID">
       <created>1676230607769</created>
@@ -195,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676903453703</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Tests v1 complete, program complete">
+      <created>1676935943997</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1676935943997</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +214,7 @@
     <MESSAGE value="Javadoc comments added, next step to test everything" />
     <MESSAGE value="Moving the structure of the packages" />
     <MESSAGE value="Structure completed, yet to test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Structure completed, yet to test" />
+    <MESSAGE value="Tests v1 complete, program complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests v1 complete, program complete" />
   </component>
 </project>

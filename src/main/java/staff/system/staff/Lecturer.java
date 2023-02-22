@@ -3,6 +3,7 @@ package staff.system.staff;
 import staff.system.supporting.Module;
 import staff.system.supporting.Name;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +21,7 @@ class Lecturer extends AbstractStaff {
     public Lecturer(Name name, Date dateOfBirth, String staffEmploymentStatus) {
         //Java will call the StaffID, SmartCard parts of the AbstractStaff constructor if I don't define them here
         super(name, dateOfBirth, staffEmploymentStatus);
-        this.modules = null;
+        this.modules = Collections.emptySet();
     }
 
      /**
