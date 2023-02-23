@@ -33,7 +33,8 @@ public class StaffManager {
 	}
 
 	/**
-	 *This method should allow modules information to be read from a pre-defined data file and stored in a set of modules
+	 * This method should allow modules information to be read from a pre-defined data file and stored in a set of modules
+	 *
 	 * @param path the path to the file to be read
 	 * @return the set of modules read in from the file
 	 * @throws IOException when the file is not found
@@ -72,6 +73,7 @@ public class StaffManager {
 
 	/**
 	 * This method should allow students information to be read from a pre-defined data file and stored in a set of names.
+	 *
 	 * @param path the path to the file to be read
 	 * @return the set of students read in from the file
 	 * @throws IOException when the file is not found
@@ -106,6 +108,7 @@ public class StaffManager {
 
 	/**
 	 * This method returns the number of staff of the specified type that are currently employed.
+	 *
 	 * @param type staff type, researcher or lecturer
 	 * @return number of researchers or lecturers
 	 * @throws IllegalArgumentException if the type argument is not a researcher or a lecturer
@@ -137,24 +140,32 @@ public class StaffManager {
 
 	/**
 	 * This method adds either a set of modules or a set of students to the staff depending on their type.
-	 * @param id the staff member's id
-	 * @param modules the modules which are to be assigned to a lecturer
+	 *
+	 * @param id       the staff member's id
+	 * @param modules  the modules which are to be assigned to a lecturer
 	 * @param students the students which are to be assigned to a researcher
 	 * @return true if assignment was successful, false if unsuccessful
 	 * @throws IllegalArgumentException if staff id does not exist, if allModules and allStudents don't contain the arguments,
-	 * if staff type is invalid
+	 *                                  if staff type is invalid
 	 */
 	public boolean addData(StaffID id, Set<Module> modules, Set<Name> students) throws IllegalArgumentException {
 
 		boolean modulesExist = false;
 		boolean studentsExist = false;
-		String staffType = allStaff.get(id).getStaffType();
-		//note that a set cannot contain a null value so this should work.
 
 		try {
-			if (!allStaff.containsKey(id)) {
+			if (allStaff.containsKey(id)) {
+				AbstractStaff staff = allStaff.get(id);
+				if (staff != null) {
+					String staffType = staff.getStaffType();
+				}
+			} else {
 				throw new IllegalArgumentException("Staff ID does not exist: " + id);
 			}
+
+			String staffType = allStaff.get(id).getStaffType();
+			//note that a set cannot contain a null value
+
 			if (allModules.containsAll(modules)) {
 				modulesExist = true;
 			}
@@ -162,11 +173,14 @@ public class StaffManager {
 				studentsExist = true;
 			}
 			if (!(allModules.containsAll(modules) || allStudents.containsAll(students))) {
-				throw new IllegalArgumentException("Modules and Students parameters don't exist in the list.");
+				throw new IllegalArgumentException("Modules and Students parameters don't exist in the set.");
 				//covers null case for uninitialised sets
 			}
 			if (!(staffType.equalsIgnoreCase(AbstractStaff.LECTURER) || staffType.equalsIgnoreCase(AbstractStaff.RESEARCHER))) {
 				throw new IllegalArgumentException("Staff type isn't Lecturer or Researcher for ID: " + id);
+			}
+			if (!((modules == null && !students.isEmpty()) || (students == null && !modules.isEmpty()))) {
+				throw new IllegalArgumentException("Cannot input both students and modules set, one must be null");
 			}
 
 			if (staffType.equalsIgnoreCase(AbstractStaff.LECTURER) && modulesExist) {
@@ -195,24 +209,24 @@ public class StaffManager {
 				allStaff.put(id, researcher);
 				return true;
 			}
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
-		catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			}
 		return false;
 	}
 
 	/**
 	 * This method registers a new staff onto the system and allocates a smart card and a staff ID
-	 * @param firstName first name of staff member
-	 * @param lastName last name of staff member
-	 * @param dob date of birth of staff member
-	 * @param staffType researcher or lecturer
+	 *
+	 * @param firstName        first name of staff member
+	 * @param lastName         last name of staff member
+	 * @param dob              date of birth of staff member
+	 * @param staffType        researcher or lecturer
 	 * @param employmentStatus permanent or contract
 	 * @return the abstract staff object instance created
-	 * @throws IllegalStateException if smartcard cannot be assigned
+	 * @throws IllegalStateException    if smartcard cannot be assigned
 	 * @throws IllegalArgumentException if employmentStatus and/or staffType are not valid arguments
-	 * @throws InstantiationException if smartcard number is not unique
+	 * @throws InstantiationException   if smartcard number is not unique
 	 */
 	public Staff employStaff(String firstName, String lastName, Date dob,
 							 String staffType, String employmentStatus) throws IllegalStateException, IllegalArgumentException, InstantiationException {
@@ -239,6 +253,7 @@ public class StaffManager {
 
 	/**
 	 * This method returns all staff that are employed by the university
+	 *
 	 * @return all staff in a collection
 	 */
 	public Collection<Staff> getAllStaff() {
@@ -253,12 +268,13 @@ public class StaffManager {
 		while (iterator.hasNext()) {
 			Map.Entry<StaffID, AbstractStaff> entry = iterator.next();
 			everyStaffObj.add(entry.getValue());
-			}
+		}
 		return everyStaffObj;
 	}
 
 	/**
 	 * This method removes the staff record associated with the given staff id. In effect, the staff is leaving the University.
+	 *
 	 * @param id the StaffID of the member to be terminated
 	 * @throws IllegalArgumentException if the id is not in the allStaff hashmap
 	 */
@@ -274,13 +290,4 @@ public class StaffManager {
 			System.out.println(e.getMessage());
 		}
 	}
-
-//	@Override
-//	public String toString() {
-//		String result = "";
-//		for (Map.Entry<?, ?> entry : allStaff.entrySet()) {
-//			result += entry.getKey() + ":" + entry.getValue() + ", ";
-//		}
-//		return result;
-//	}
 }

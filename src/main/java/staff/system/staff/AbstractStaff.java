@@ -52,6 +52,7 @@ public abstract class AbstractStaff implements Staff {
         catch (IllegalArgumentException e) {
             System.out.println(e);
         }
+
         AbstractStaff staffObject = null;
         if (staffType.equalsIgnoreCase(LECTURER)) {
             staffObject = new Lecturer(name, dateOfBirth, staffEmploymentStatus);
@@ -89,7 +90,7 @@ public abstract class AbstractStaff implements Staff {
      * @return staffID
      */
     @Override
-    public final StaffID getStaffID() { return staffID; } // should be immutable due to getInstance of Staff ID
+    public final StaffID getStaffID() { return this.staffID; } // should be immutable due to getInstance of Staff ID
 
     /**
      * getter for smartCard

@@ -32,8 +32,11 @@ public class Test {
 
         Set<Module> modulesSetValid = new HashSet<>();
         modulesSetValid.add(moduleValid);
-
         Set<Module> modulesSetInvalid = null;
+
+        Name studentValid = new Name("I", "Student");
+        Set<Name> studentsSetValid = new HashSet<>();
+        studentsSetValid.add(studentValid);
 
         /*
         Testing the AbstractStaff objects with valid/invalid arguments
@@ -143,8 +146,9 @@ public class Test {
 
         /*
         Testing addData from StaffManager
+        Ran out of time :(
          */
-        //lecturerPermanentValid.addData(lecturerPermanentValid.getStaffID());
+
 
         /*
         Testing employStaff from StaffManager
@@ -184,12 +188,10 @@ public class Test {
         Testing getAllStaff from StaffManager
          */
         Assertions.assertFalse(staffManager.getAllStaff().isEmpty());
-        //System.out.println(staffManager.toString());
-
 
         /*
         Testing terminateStaff from StaffManager
-        I don't know how to get the randomly generated ids of the staff in the StaffManager hashmap. StaffID class cannot be imported
+        Ran out of time :(
          */
 
     }

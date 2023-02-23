@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="815697d6-4b51-4e37-81e9-4bb2bcf3d917" name="Changes" comment="Tests v1 complete, program complete">
+    <list default="true" id="815697d6-4b51-4e37-81e9-4bb2bcf3d917" name="Changes" comment="Submittable V2 after list representation of modules and students">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/staff/system/staff/AbstractStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/AbstractStaff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/staff/system/staff/Lecturer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/Lecturer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/staff/system/staff/Researcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/Researcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/staff/system/staff/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/Staff.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/staff/system/staff/StaffManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/staff/StaffManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/staff/system/testing/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/staff/system/testing/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/staff/system/staff/AbstractStaff.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/staff/system/staff/AbstractStaff.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/staff/system/staff/StaffManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/staff/system/staff/StaffManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/staff/system/testing/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/staff/system/testing/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +77,7 @@
       <workItem from="1676911655959" duration="17545000" />
       <workItem from="1676938525157" duration="19000" />
       <workItem from="1676986368289" duration="3216000" />
-      <workItem from="1677098356014" duration="8006000" />
+      <workItem from="1677098356014" duration="12133000" />
     </task>
     <task id="LOCAL-00001" summary="Backup before restarting StaffID">
       <created>1676230607769</created>
@@ -191,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677099208989</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Submittable V2 after list representation of modules and students">
+      <created>1677151667432</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1677151667432</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +232,7 @@
     <MESSAGE value="Structure completed, yet to test" />
     <MESSAGE value="Tests v1 complete, program complete" />
     <MESSAGE value="Submittable V1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Submittable V1" />
+    <MESSAGE value="Submittable V2 after list representation of modules and students" />
+    <option name="LAST_COMMIT_MESSAGE" value="Submittable V2 after list representation of modules and students" />
   </component>
 </project>
