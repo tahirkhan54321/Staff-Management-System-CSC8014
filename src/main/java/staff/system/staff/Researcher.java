@@ -1,6 +1,7 @@
 package staff.system.staff;
 
 import staff.system.supporting.Name;
+import staff.system.supporting.Module;
 
 import java.util.*;
 
@@ -27,11 +28,20 @@ class Researcher extends AbstractStaff {
     public Set<Name> getStudents() { return new HashSet<>(students); }
 
     /**
-     * setter for students assigned to researcher
+     * setter for students assigned to researcher. Cannot assign more than 10 students.
      * @param students the students set to be assigned
      */
-    public void setStudents(Set<Name> students) {
-        this.students = students;
+    public void setStudents(Set<Name> students) throws IllegalArgumentException {
+        int noOfStudents = students.size();
+        try {
+            if (noOfStudents > 10) {
+                throw new IllegalArgumentException("Cannot set more than 10 students to this researcher.");
+            } else {
+                this.students = students;
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -47,7 +57,7 @@ class Researcher extends AbstractStaff {
      * lists all the students assigned to the researcher as a string
      * @return string of student names
      */
-    public String list() {
+    public String listString() {
         String allStudentNames = "";
         System.out.println("Here are all the students assigned to this Researcher (" + this.getName() + "): ");
         for (Name name : students) {
@@ -57,16 +67,40 @@ class Researcher extends AbstractStaff {
     }
 
     /**
+     * lists a set of all students associated with this researcher
+     * @return defensive copy of set of students
+     */
+    public Set<Name> listStudents() {
+        return new HashSet<>(students);
+    }
+
+    /**
+     * gives an empty set because there are no modules associated with a researcher
+     * @return empty set
+     * @throws IllegalAccessException if used on a researcher object
+     */
+    public Set<Module> listModules() throws IllegalAccessException {
+        try {
+            throw new IllegalAccessException("Cannot list modules for a researcher.");
+        } catch (IllegalAccessException e) {
+            System.out.println(e);
+        }
+        return Collections.emptySet();
+    }
+
+    /**
      * whether the researcher has enough students assigned to them
-     * @return true if >10 students, false otherwise
+     * @return true if 10 students, false otherwise
      */
     public boolean isEnough() {
         boolean isEnough = false;
-        if (students.size() >= 10) {
+        if (students.size() == 10) {
             isEnough = true;
         }
         return isEnough;
     }
+
+
 
 
 }

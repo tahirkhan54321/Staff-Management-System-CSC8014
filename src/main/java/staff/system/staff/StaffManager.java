@@ -163,6 +163,7 @@ public class StaffManager {
 			}
 			if (!(allModules.containsAll(modules) || allStudents.containsAll(students))) {
 				throw new IllegalArgumentException("Modules and Students parameters don't exist in the list.");
+				//covers null case for uninitialised sets
 			}
 			if (!(staffType.equalsIgnoreCase(AbstractStaff.LECTURER) || staffType.equalsIgnoreCase(AbstractStaff.RESEARCHER))) {
 				throw new IllegalArgumentException("Staff type isn't Lecturer or Researcher for ID: " + id);
@@ -170,13 +171,27 @@ public class StaffManager {
 
 			if (staffType.equalsIgnoreCase(AbstractStaff.LECTURER) && modulesExist) {
 				Lecturer lecturer = (Lecturer) allStaff.get(id);
-				lecturer.setModules(modules);
+				Set<Module> tempModules = new HashSet<>();
+				for (Module module : lecturer.getModules()) {
+					tempModules.add(module);
+				}
+				for (Module module : modules) {
+					tempModules.add(module);
+				}
+				lecturer.setModules(tempModules);
 				allStaff.put(id, lecturer);
 				return true;
 			}
 			if (staffType.equalsIgnoreCase(AbstractStaff.RESEARCHER) && studentsExist) {
 				Researcher researcher = (Researcher) allStaff.get(id);
-				researcher.setStudents(students);
+				Set<Name> tempStudents = new HashSet<>();
+				for (Name name : researcher.getStudents()) {
+					tempStudents.add(name);
+				}
+				for (Name name : students) {
+					tempStudents.add(name);
+				}
+				researcher.setStudents(tempStudents);
 				allStaff.put(id, researcher);
 				return true;
 			}

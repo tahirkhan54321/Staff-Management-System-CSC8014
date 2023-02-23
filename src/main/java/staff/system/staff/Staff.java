@@ -1,6 +1,11 @@
 package staff.system.staff;
 
 import staff.system.smartcard.SmartCard;
+import staff.system.supporting.Name;
+import staff.system.supporting.Module;
+import staff.system.supporting.Name;
+
+import java.util.Set;
 
 /**
  * staff.system.staff.Staff - interface to university staff.
@@ -47,7 +52,11 @@ public interface Staff {
 	 * depending on staffType
 	 * @return a string representation of the list
 	 */
-	String list();
+	String listString();
+
+	Set<Module> listModules() throws IllegalAccessException;
+
+	Set<Name> listStudents() throws IllegalAccessException;
 
 	/**
 	 * a method which tells us if a lecturer has been assigned enough modules (40 credits in total or more) or
@@ -55,6 +64,8 @@ public interface Staff {
 	 * @return true/false
 	 */
 	boolean isEnough();
+
+
 
     
 }

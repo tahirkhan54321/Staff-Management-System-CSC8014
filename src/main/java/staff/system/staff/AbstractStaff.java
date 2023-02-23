@@ -99,28 +99,10 @@ public abstract class AbstractStaff implements Staff {
     public final SmartCard getSmartCard() { return smartCard; } // should be immutable due to getInstance of SmartCard
 
     /**
-     * getter for staffType
-     * @return lecturer/researcher
-     */
-    @Override
-    public abstract String getStaffType();
-
-    /**
      * getter for staffEmploymentStatus
      * @return permanent/contract
      */
     @Override
     public final String getStaffEmploymentStatus() { return staffEmploymentStatus; }
 
-    /**
-     * abstract method for researcher/lecturer to implement in regard to enough students/modules respectively
-     * @return true/false
-     */
-    public abstract boolean isEnough();
-
-    /**
-     * abstract method for researcher/lecturer to implement in regard to students/modules sets respectively
-     * @return set of students or set of modules
-     */
-    public abstract String list();
 }
